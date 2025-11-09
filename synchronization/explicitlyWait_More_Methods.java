@@ -19,10 +19,10 @@ public class explicitlyWait_More_Methods {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		WebDriver driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		driver.manage().window().maximize();
 		
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		
 		try {
 			
@@ -38,7 +38,7 @@ public class explicitlyWait_More_Methods {
 			wait.until(ExpectedConditions.elementToBeClickable(By.id("gender-male"))).click();
 			driver.findElement(By.id("FirstName")).sendKeys("Eren");
 			driver.findElement(By.id("LastName")).sendKeys("Yegar");
-			driver.findElement(By.id("Email")).sendKeys("eren.yegar@anime14aot.com");
+			driver.findElement(By.id("Email")).sendKeys("eren.yegar@anime16aot.com");
 			driver.findElement(By.id("Password")).sendKeys("Freedom");
 			driver.findElement(By.id("ConfirmPassword")).sendKeys("Freedom");
 			wait.until(ExpectedConditions.elementToBeClickable(By.id("register-button"))).click();
@@ -48,20 +48,12 @@ public class explicitlyWait_More_Methods {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class = 'result']")));
 				System.out.println("Test Case passed ----> Successfully Registered");
 				
-				WebElement account = driver.findElement(By.linkText("eren.yegar@anime14aot.com"));
-				wait.until(ExpectedConditions.textToBePresentInElement(account, "eren.yegar@anime14aot.com"));
+				WebElement account = driver.findElement(By.linkText("eren.yegar@anime16aot.com"));
+				wait.until(ExpectedConditions.textToBePresentInElement(account, "eren.yegar@anime16aot.com"));
 				System.out.println("Test Case passed ----> Successfully Logged in");
 				driver.findElement(By.xpath("//input[@value = 'Continue']")).click();
 				
-			} catch (Throwable e) {
-				WebElement error = driver.findElement(By.xpath("//div[@class = 'validation-summary-errors']"));
-				String errorText = error.getText();
-				System.out.println(errorText);
-				
-			}
-				
-				
-				driver.findElement(By.xpath("//input[@value = 'Search store']")).sendKeys("Laptop");
+				driver.findElement(By.xpath("//input[@value = 'Search store']")).sendKeys("");
 				driver.findElement(By.xpath("//input[@value = 'Search']")).click();
 				
 				try {
@@ -72,6 +64,7 @@ public class explicitlyWait_More_Methods {
 					alert.accept();
 					driver.findElement(By.xpath("//input[@value = 'Search store']")).clear();
 					driver.findElement(By.xpath("//input[@value = 'Search store']")).sendKeys("Laptop");
+					driver.findElement(By.xpath("//input[@value = 'Search']")).click();
 				} catch (Throwable e) {
 					System.out.println("No Alert Appeared, you can continue with the execution");
 
@@ -156,6 +149,12 @@ public class explicitlyWait_More_Methods {
 				wait.until(ExpectedConditions.textToBePresentInElement(placed, text));
 				flag = true;
 				
+			} catch (Throwable e) {
+				WebElement error = driver.findElement(By.xpath("//div[@class = 'validation-summary-errors']"));
+				String errorText = error.getText();
+				System.out.println(errorText);
+				
+			}
 				
 			
 		} catch (Throwable e) {
